@@ -1,25 +1,4 @@
-<?php
 
-$conn = mysqli_connect('localhost', 'root', '', 'contact_db') or die('connection failed');
-
-if (isset($_POST['send'])) {
-
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $number = mysqli_real_escape_string($conn, $_POST['number']);
-   $msg = mysqli_real_escape_string($conn, $_POST['message']);
-
-   $select_message = mysqli_query($conn, "SELECT * FROM `contact_form` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message = '$msg'") or die('query failed');
-
-   if (mysqli_num_rows($select_message) > 0) {
-      $message[] = 'message sent already!';
-   } else {
-      mysqli_query($conn, "INSERT INTO `contact_form`(name, email, number, message) VALUES('$name', '$email', '$number', '$msg')") or die('query failed');
-      $message[] = 'message sent successfully!';
-   }
-}
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,21 +22,6 @@ if (isset($_POST['send'])) {
 
 <body >
 
-   <?php
-
-   if (isset($message)) {
-      foreach ($message as $message) {
-         echo '
-      <div class="message" data-aos="zoom-out">
-         <span>' . $message . '</span>
-         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
-      }
-   }
-
-   ?>
-
    <!-- header section starts  -->
 
    <header class="header">
@@ -72,7 +36,7 @@ if (isset($_POST['send'])) {
          <a href="#services">Services</a>
          <a href="#portfolio">Portfolio</a>
          <a href="#contact">Contact</a>
-         <a href="./mycompany.php">My company</a>
+         <a href="./mycompany.html">My company</a>
       </nav>
 
       <div class="follow">
@@ -336,17 +300,6 @@ if (isset($_POST['send'])) {
    <section class="contact" id="contact">
 
       <h1 class="heading" data-aos="fade-up"> <span>contact me</span> </h1>
-
-      <form action="" method="post">
-         <div class="flex">
-            <input data-aos="fade-right" type="text" name="name" placeholder="Enter your name" class="box" required>
-            <input data-aos="fade-left" type="email" name="email" placeholder="Enter your email" class="box" required>
-         </div>
-         <input data-aos="fade-up" type="number" min="0" name="number" placeholder="Enter your number" class="box" required>
-         <textarea data-aos="fade-up" name="message" class="box" required placeholder="Enter your message" cols="30" rows="10"></textarea>
-         <input type="submit" data-aos="zoom-in" value="Send message" name="send" class="btn">
-      </form>
-
       <h1 class="heading" data-aos="fade-up"> <span>Send Msg WhatsApp</span> </h1>
        <section  action="" method="post">
          <button type="button" onclick="window.location.href='./msg.html'" class="btn">SEND WHATSAPP</button>
@@ -379,7 +332,7 @@ if (isset($_POST['send'])) {
 
    <!-- contact section ends -->
 
-   <div class="credit"> &copy; copyright @ <?php echo date('Y'); ?> by <span><a href="./mycompany.php" style="color:#d90c0c">CodingPlace®</a></span> </div>
+   <div class="credit"> &copy; copyright @ 2022 by <span><a href="./mycompany.html" style="color:#d90c0c">CodingPlace®</a></span> </div>
 
 
 
